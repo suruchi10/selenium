@@ -32,7 +32,7 @@ public class firefox {
 		driver.findElement(By.xpath(".//*[@id='edit-pass']")).sendKeys("hope");
 		driver.findElement(By.xpath(".//*[@id='edit-submit']")).click();
 		String login = driver.findElement(By.xpath(".//*[@id='block-bartik-account-menu']/div[2]/ul/li[2]/a")).getText();
-		Assert.assertEquals(login,"Log in");
+		Assert.assertEquals(login,"Log out");
 		
 		driver.findElement(By.xpath(".//*[@id='block-bartik-main-menu']/div[2]/ul/li[2]/a")).click();
 		String str1=driver.getCurrentUrl();
