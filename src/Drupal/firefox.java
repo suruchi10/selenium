@@ -36,7 +36,7 @@ public class firefox {
 		
 		driver.findElement(By.xpath(".//*[@id='block-bartik-main-menu']/div[2]/ul/li[2]/a")).click();
 		String str1=driver.getCurrentUrl();
-		Assert.assertEquals(URL,str1);
+		Assert.assertEquals(URL,str2);
 	}
 		 
 		
