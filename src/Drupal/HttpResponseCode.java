@@ -78,7 +78,7 @@ public class HttpResponseCode {
 			//again
 			int code =response.getStatusLine().getStatusCode() ;
 			System.out.println("URL:" + URL+":" + code);
-			if (response.getStatusLine().getStatusCode() != 200)
+			if (response.getStatusLine().getStatusCode() == 200)
 				invalidLinksCount++;
 		} catch (Exception e) {
 			e.printStackTrace();
