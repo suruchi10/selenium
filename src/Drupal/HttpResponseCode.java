@@ -75,7 +75,7 @@ public class HttpResponseCode {
 			// verifying response code and The HttpStatus should be 200 if not,
 			// increment invalid link count
 			////We can also check for 404 status code like response.getStatusLine().getStatusCode() == 404
-			//aiyen
+			
 			int code =response.getStatusLine().getStatusCode() ;
 			System.out.println("URL:" + URL+":" + code);
 			if (response.getStatusLine().getStatusCode() != 200)
