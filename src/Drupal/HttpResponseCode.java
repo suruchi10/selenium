@@ -1,6 +1,10 @@
 package Drupal;
 
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import org.apache.http.HttpResponse;
@@ -19,69 +23,40 @@ public class HttpResponseCode {
 	
 	private WebDriver driver;
 	private int invalidLinksCount;
+	String linkUrl ="http://drupalhope.dd:8083/resume/myform";
 
 	@BeforeClass
 	public void setUp() {
 
 		driver = new FirefoxDriver();
-		driver.get("http://drupalhope.dd:8083");
+		//driver.get("http://drupalhope.dd:8083");
 	}
 
+	 
+	
 	@Test
-	public void validateInvalidLinks() {
+	
+	public void checklink() throws IOException {
+	
+	URL url = new URL(linkUrl);
 
-		try {
-			invalidLinksCount = 0;
-			List<WebElement> anchorTagsList = driver.findElements(By
-					.tagName("a"));
-			System.out.println("Total no. of links are "
-					+ anchorTagsList.size());
-			
-			for (WebElement anchorTagElement : anchorTagsList) {
-				if (anchorTagElement != null) {
-					String url = anchorTagElement.getAttribute("href");
-					
-					if (url != null && !url.contains("javascript")) {
-						verifyURLStatus(url);
-						
-					} else {
-						
-						invalidLinksCount++;
-					}
-				}
-			}
+	   HttpURLConnection httpURLConnect = (HttpURLConnection) url
+	     .openConnection();
 
-			System.out.println("Total no. of invalid links are "
-					+ invalidLinksCount);
+	   httpURLConnect.setConnectTimeout(3000);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-		}
+	   httpURLConnect.connect();
+
+	   if (httpURLConnect.getResponseCode() == 200) {
+
+	    
+	    System.out.println(linkUrl + " - "+httpURLConnect.getResponseMessage());
+	   
+	    }
+
+	else{
+	System.out.println("Link is not working");
+	}
 	}
 
-	@AfterClass
-	public void tearDown() {
-		if (driver != null)
-			driver.quit();
-	}
-
-	public void verifyURLStatus(String URL) {
-
-		HttpClient client = HttpClientBuilder.create().build();
-		HttpGet request = new HttpGet(URL);
-		try {
-			HttpResponse response = client.execute(request);
-			// verifying response code and The HttpStatus should be 200 if not,
-			// increment invalid link count
-			////We can also check for 404 status code like response.getStatusLine().getStatusCode() == 404
-			//rtss
-			int code =response.getStatusLine().getStatusCode() ;
-			System.out.println("URL:" + URL+":" + code);
-			if (response.getStatusLine().getStatusCode() != 200)
-				invalidLinksCount++;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	} 
 }
