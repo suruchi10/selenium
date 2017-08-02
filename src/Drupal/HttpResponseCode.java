@@ -32,7 +32,7 @@ public class HttpResponseCode {
 		//driver.get("http://drupalhope.dd:8083");
 	}
 
-	 
+	 //for checking particular link url
 	
 	@Test
 	
