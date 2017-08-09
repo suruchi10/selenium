@@ -62,7 +62,7 @@ public class firefox {
 		String ExpectedUrl = "http://drupalhope.dd:8083/user/1";
 		
 		Assert.assertEquals(CurrentUrl, ExpectedUrl,"Error in submitting Form ");
-		
+		//succesful form submition 
 		String Message=driver.findElement(By.xpath(".//*[@id='page']/div[1]/aside/div/div/div")).getText();
 		System.out.println(Message);
 			
@@ -77,7 +77,4 @@ public class firefox {
 		
 		
 		
-		
-		
-
 }
