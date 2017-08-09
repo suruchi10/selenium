@@ -3,13 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="Drupal.HttpResponseCode">
+      <class name="Drupal.firefox">
         <methods>
-          <include name="setUp"/>
-          <include name="checklink"/>
-          <include name="tearDown"/>
+          <include name="ResumeUI"/>
+          <include name="FFLaunch"/>
+          <include name="CloseBrowser"/>
         </methods>
-      </class> <!-- Drupal.HttpResponseCode -->
+      </class> <!-- Drupal.firefox -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
